@@ -1,0 +1,40 @@
+nadavsh22
+
+
+=============================
+=      File description     =
+=============================
+LinkedListHelper.java - a 'wrapper' class with a 'has-a' LinkedList<String>,enabling me to use an array of
+ LinkedList<string>, delegating the methods: pop(),add(),remove(),size() and contains().
+SimpleHashSet.java - an abstract class implementing the interface SimpleSet.
+OpenHashSet.java
+ClosedHashSet.java
+CollectionFacadeSet.java - gives javas' data structures a shared API with SimpleSets' interface.
+SimpleSetPerformanceAnalyzer - the main class, running performance tests on the data structures.
+RESULTS - contains the results of the performance analysis.
+
+
+
+
+
+
+=============================
+=  Implementation details   =
+=============================
+OpenHashSet's table:
+the OpenHashSet hashTable is an array of the object LinkedListHelper that i've created as a wrapper delegating
+methods to java's LinkedList and is consisted of strings. as default the array is created with 16 empty linked
+lists, whenever an item is added to the table, the clamp() function provides an index and the item is added to
+the list that resides in that index. after adding an item to the table it checks whether the current
+loadFactor is at a valid value, and rehashes if not. i found that the pop() method of javas LinkedList useful
+when rehashing,both emptying the list and supplying me with the element to be inserted to the new table,so i
+delegated that to my helper class as well.
+
+ClosedHashSet deletion mechanism:
+the delete() method first checks if the item we wish to delete is in the table, using contains(). contains
+returns true then the method finds it in the table, and replaces it with an empty string. then -1 is taken off
+the size of the table, and the table rehashes if the loadFactor is lower than the valid value.
+i was actually planning on using contains() numAttempts instead of probing my table again when deleting an
+element, but it was more bug inclined, and when i compared it (time-wise) it didn't prove to be less time
+consuming, so i decided to leave it as is.
+
